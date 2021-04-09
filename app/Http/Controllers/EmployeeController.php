@@ -19,6 +19,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
+        return $employee = Employee::first()->user->roles;
         return view('admin.employee.index');
     }
 
@@ -39,7 +40,7 @@ class EmployeeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EmployeeStoreRequest $request)
     {
         DB::transaction(function () use($request) {
             $user = User::create([
@@ -60,7 +61,7 @@ class EmployeeController extends Controller
             }
         });
 
-        return view('admin.employee.index');
+        return redirect()->route('admin.employees.index');
     }
 
     /**
