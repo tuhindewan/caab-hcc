@@ -13,7 +13,7 @@
         <img src="{{ asset('img/profile.png') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-        <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+        <a href="#" class="d-block">Super Admin</a>
         </div>
     </div>
 
@@ -48,7 +48,7 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="" class="nav-link">
+                        <a href="{{ route('admin.employees.index') }}" class="nav-link">
                             <i class="fas fa-users nav-icon"></i>
                             <p>Employees</p>
                         </a>

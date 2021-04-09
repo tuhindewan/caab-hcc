@@ -4,8 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Laravel') }}  @yield('title')</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    @stack('page-css')
 
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
@@ -34,6 +35,7 @@
                     </div>
                 </div>
 
+                @yield('content')
 
             </div>
 
@@ -42,5 +44,6 @@
         </div>
 
 <script src="{{ asset('js/app.js') }}"></script>
+@stack('page-js')
 </body>
 </html>
