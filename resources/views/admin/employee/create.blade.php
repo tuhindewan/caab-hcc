@@ -21,7 +21,8 @@
             <div class="card-header">
               <h3 class="card-title">Employee Create</h3>
             </div>
-            <form id="createForm" action="" method="POST">
+            <form id="createForm" action="{{ route('admin.employee.store') }}" method="POST">
+                @csrf
                 <div class="card-body">
                     <div class="form-group">
                         <input type="text" name="name"
@@ -43,8 +44,9 @@
                         <select class="selectpicker form-control"
                             title="Select Role" data-live-search="true" multiple name="roleID">
                             <option style="display: none"></option>
-                            <option value="">p</option>
-                            <option value="">q</option>
+                            @foreach ($roles as $role)
+                            <option value="{{ $role->id }}">{{ $role->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group">
@@ -137,6 +139,11 @@
       $(element).removeClass('is-invalid');
     }
   });
+
+//   function submitFunction(event){
+// 	event.preventDefault();
+// }
+// $("#createForm").submit(submitFunction);
 
 });
 </script>

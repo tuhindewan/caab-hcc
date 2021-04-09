@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\EmployeeStoreRequest;
 
 class EmployeeController extends Controller
 {
@@ -36,13 +41,26 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->all();
-        return [
-            'name' => 'required|string|max:191',
-            'designation' => 'required|string|max:191',
-            'department' => 'required|string|max:191',
-            'email' => 'required|string|email|max:191|unique:users',
-        ];
+        DB::transaction(function () use($request) {
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'username' => $request->mobile,
+                'password' => Hash::make('123123')
+            ]);
+
+            if($user){
+                Employee::create([
+                    'designation' => $request->designation,
+                    'department' => $request->department,
+                    'mobile' => $request->mobile,
+                    'user_id' => $user->id
+                ]);
+                $user->assignRole($request->input('roles'));
+            }
+        });
+
+        return view('admin.employee.index');
     }
 
     /**
