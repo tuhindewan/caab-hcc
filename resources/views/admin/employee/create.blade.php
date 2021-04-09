@@ -40,7 +40,7 @@
             <div class="card-header">
               <h3 class="card-title">Employee Create</h3>
             </div>
-            <form>
+            <form id="createForm">
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
@@ -187,7 +187,11 @@ $(function () {
                 data: {_token:_token, name:name, designation:designation, department:department,
                         email:email, mobile:mobile, roles:roles},
                 success:function(response) {
-                    console.log(response);
+                    $("#createForm")[0].reset();
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'User created successfully'
+                        })
                 },
                 error:function (response) {
                     $('#nameError').text(response.responseJSON.errors.name);

@@ -48,7 +48,7 @@ class EmployeeStoreRequest extends FormRequest
             'mobile.required' => 'Employee mobile number is required',
             'mobile.numeric' => 'Mobile number must be a number',
             'mobile.min' => 'Mobile number must be 11 digits',
-            'mobile.unique' => 'Mobile numberhas already been taken',
+            'mobile.unique' => 'Mobile number has already been taken',
             'roles.required' => 'Employee role selection is required',
         ];
     }
