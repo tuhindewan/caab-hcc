@@ -15,12 +15,12 @@
           <div class="card">
             <div class="card-header">
               <h3 class="card-title">Employee List</h3>
-              <div class="card-tools">
-                <button class="btn btn-success">
-                    Add New
-                    <i class="fas fa-user-plus"></i>
-                </button>
-            </div>
+                <div class="card-tools">
+                    <a href="{{ route('admin.employee.create') }}" class="btn btn-success">
+                        Add New
+                        <i class="fas fa-user-plus"></i>
+                    </a>
+                </div>
             </div>
             <!-- /.card-header -->
             <div class="card-body">

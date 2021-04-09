@@ -14,8 +14,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $roles = Role::all();
-        return view('admin.employee.index', compact('roles'));
+        return view('admin.employee.index');
     }
 
     /**
@@ -25,7 +24,8 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        //
+        $roles = Role::all();
+        return view('admin.employee.create', compact('roles'));
     }
 
     /**
@@ -36,7 +36,13 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request->all();
+        return [
+            'name' => 'required|string|max:191',
+            'designation' => 'required|string|max:191',
+            'department' => 'required|string|max:191',
+            'email' => 'required|string|email|max:191|unique:users',
+        ];
     }
 
     /**

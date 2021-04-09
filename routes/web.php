@@ -25,6 +25,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::prefix('admin')->group(function () {
     Route::get('/employees', [EmployeeController::class, 'index'])->name('admin.employees.index');
     Route::prefix('employee')->group(function () {
-        Route::get('/', );
+        Route::get('/create', [EmployeeController::class, 'create'])->name('admin.employee.create');
+        Route::post('/store', [EmployeeController::class, 'store'])->name('admin.employee.store');
     });
 });
