@@ -27,5 +27,6 @@ Route::prefix('admin')->group(function () {
     Route::prefix('employee')->group(function () {
         Route::get('/create', [EmployeeController::class, 'create'])->name('admin.employee.create');
         Route::post('/', [EmployeeController::class, 'store'])->name('admin.employee.store');
+        Route::delete('/employee/{id}', [EmployeeController::class, 'destroy'])->name('admin.employee.destroy');
     });
 });

@@ -179,7 +179,6 @@ $(function () {
             var email = $("#email").val();
             var mobile = $("#mobile").val();
             var roles = $("#roles").val();
-            console.log(roles)
 
             $.ajax({
                 url: "{{ route('admin.employee.store') }}",

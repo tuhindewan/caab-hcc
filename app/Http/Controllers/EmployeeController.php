@@ -61,7 +61,9 @@ class EmployeeController extends Controller
             }
         });
 
-        return redirect()->route('admin.employees.index');
+        return response()->json([
+            'success' => 'Employee is created successfully!'
+        ]);
     }
 
     /**
@@ -106,6 +108,11 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $employee = Employee::findOrFail($id);
+        $employee->delete();
+        $employee->user()->delete();
+        return response()->json([
+            'success' => 'Employee is deleted!'
+        ]);
     }
 }

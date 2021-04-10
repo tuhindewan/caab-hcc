@@ -38,7 +38,7 @@
                 </thead>
                 <tbody>
                     @foreach ($employees as $employee)
-                    <tr>
+                    <tr id="EmpID{{$employee->id}}">
                         <td>{{ $employee->user->name }}</td>
                         <td>{{ $employee->designation }}</td>
                         <td>{{ $employee->department }}</td>
@@ -58,7 +58,8 @@
                                 <i class="fas fa-edit text-blue"></i>
                             </a>
                             /
-                            <a type="button" title="Delete">
+                            <a type="button" href="javascript:void(0)"
+                                onclick="deleteEmployee({{ $employee->id }})"    title="Delete">
                                 <i class="fas fa-trash text-red"></i>
                             </a>
                         </td>
@@ -104,5 +105,36 @@
         "responsive": true,
       });
     });
+</script>
+
+<script>
+    function deleteEmployee(EmployeeID) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: '/admin/employee/employee/'+EmployeeID,
+                        type:'DELETE',
+                        data: {
+                            _token: $("input[name='_token']").val()
+                        },
+                        success:function(response) {
+                            $("#EmpID"+EmployeeID).remove()
+                            Toast.fire({
+                                icon: 'success',
+                                title: 'Employee deleted successfully'
+                                })
+                        },
+                    })
+                }
+        })
+    }
 </script>
 @endpush
