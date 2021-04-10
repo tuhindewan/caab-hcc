@@ -139,6 +139,8 @@ class EmployeeController extends Controller
     {
         $employee = Employee::findOrFail($id);
         $employee->delete();
+        $user = $employee->user;
+        DB::table('model_has_roles')->where('model_id',$user->id)->delete();
         $employee->user()->delete();
         return response()->json([
             'success' => 'Employee is deleted!'
