@@ -61,11 +61,12 @@ class EmployeeController extends Controller
                 ]);
                 $user->assignRole($request->input('roles'));
             }
+
+            return response()->json([
+                'success' => 'Employee is created successfully!'
+            ]);
         });
 
-        return response()->json([
-            'success' => 'Employee is created successfully!'
-        ]);
     }
 
     /**
@@ -101,7 +102,31 @@ class EmployeeController extends Controller
      */
     public function update(EmployeeUpdateRequest $request, $id)
     {
-        
+        $employee = Employee::findOrFail($id);
+
+        DB::transaction(function () use($request, $employee) {
+            DB::table('employees')->where('id', $employee->id)->update([
+                'department' => $request->department,
+                'designation' => $request->designation,
+                'mobile' => $request->mobile
+            ]);
+
+            DB::table('users')->where('id', $employee->user_id)->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'username' => $request->mobile
+            ]);
+
+            $user = $employee->user;
+            DB::table('model_has_roles')->where('model_id',$user->id)->delete();
+            $user->assignRole($request->input('roles'));
+
+            return response()->json([
+                'success' => 'Employee updated successfully!'
+            ]);
+
+        });
+
     }
 
     /**

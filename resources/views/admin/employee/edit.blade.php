@@ -180,7 +180,6 @@ $(function () {
                 data: {_token:_token, name:name, designation:designation, department:department, EmployeeID:EmployeeID,
                         email:email, mobile:mobile, roles:roles},
                 success:function(response) {
-                    // $("#createForm")[0].reset();
                     Toast.fire({
                         icon: 'success',
                         title: 'Employee updated successfully'
