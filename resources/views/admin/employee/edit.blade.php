@@ -18,29 +18,33 @@
           <!-- jquery validation -->
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Employee Create</h3>
+              <h3 class="card-title">Employee Edit</h3>
             </div>
             <form id="createForm">
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
                         <input type="text" name="name" id="name"
-                          class="form-control"placeholder="Enter name">
+                          class="form-control" value="{{old('name', $employee->user->name)}}"
+                          placeholder="Enter name">
                           <span class="text-danger" id="nameError"></span>
                     </div>
                     <div class="form-group">
                       <input type="text" name="designation" id="designation"
-                        class="form-control" placeholder="Enter Designation">
+                        class="form-control" value="{{old('designation', $employee->designation)}}"
+                        placeholder="Enter Designation">
                         <span class="text-danger" id="designationError"></span>
                     </div>
                     <div class="form-group">
                       <input type="text" name="department" id="department"
-                        class="form-control" placeholder="Enter Department">
+                        class="form-control"  value="{{old('department', $employee->department)}}"
+                        placeholder="Enter Department">
                         <span class="text-danger" id="departmentError"></span>
                     </div>
                     <div class="form-group">
                       <input type="email" name="email" id="email"
-                        class="form-control" placeholder="Enter email">
+                        class="form-control" value="{{old('email', $employee->user->email)}}"
+                        placeholder="Enter email">
                         <span class="text-danger" id="emailError"></span>
                     </div>
                     <div class="form-group">
@@ -48,14 +52,21 @@
                             title="Select Role" data-live-search="true" multiple name="roles[]">
                             <option style="display: none"></option>
                             @foreach ($roles as $role)
-                            <option value="{{ $role->id }}">{{ $role->name }}</option>
+                            <option value="{{ $role->id }}"
+                                @foreach ($employee->user->roles as $empRole)
+                                {{ $role->id == $empRole->id ? 'selected' : ''}}
+                                @endforeach
+                            >
+                                {{ $role->name }}
+                            </option>
                             @endforeach
                         </select>
                         <span class="text-danger" id="rolesError"></span>
                     </div>
                     <div class="form-group">
                         <input type="text" name="mobile" id="mobile"
-                          class="form-control" placeholder="Enter mobile number">
+                          class="form-control" value="{{old('mobile', $employee->mobile)}}"
+                          placeholder="Enter mobile number">
                           <span class="text-danger" id="mobileError"></span>
                     </div>
                 </div>

@@ -54,7 +54,7 @@
                                 <i class="fas fa-eye text-cyan"></i>
                             </a>
                             /
-                            <a type="button" title="Edit" href="">
+                            <a type="button" title="Edit" href="{{ route('admin.employee.edit', $employee->id) }}">
                                 <i class="fas fa-edit text-blue"></i>
                             </a>
                             /
@@ -120,7 +120,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: '/admin/employee/employee/'+EmployeeID,
+                        url: '/admin/employee/'+EmployeeID,
                         type:'DELETE',
                         data: {
                             _token: $("input[name='_token']").val()

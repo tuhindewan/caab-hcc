@@ -85,7 +85,9 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $employee = Employee::findOrFail($id);
+        $roles = Role::all();
+        return view('admin.employee.edit', compact('employee', 'roles'));
     }
 
     /**
