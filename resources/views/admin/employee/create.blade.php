@@ -169,7 +169,7 @@ $(function () {
                     $("#createForm")[0].reset();
                     Toast.fire({
                         icon: 'success',
-                        title: 'User created successfully'
+                        title: 'Employee created successfully'
                         })
                 },
                 error:function (response) {

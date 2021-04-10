@@ -22,6 +22,7 @@
             </div>
             <form id="createForm">
                 @csrf
+                <input type="hidden" id="EmployeeID" name="EmployeeID" value="{{ $employee->id }}">
                 <div class="card-body">
                     <div class="form-group">
                         <input type="text" name="name" id="name"
@@ -72,7 +73,7 @@
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-success btn-sm btn-submit">
-                    <b>Create</b> <i class="fas fa-share-square"></i>
+                        <b>update</b> <i class="fas fa-share-square"></i>
                     </button>
                     <a class="btn btn-danger btn-sm" href="{{ route('admin.employees.index') }}">
                         <b>Cancel</b> <i class="fas fa-window-close"></i>
@@ -164,23 +165,25 @@ $(function () {
             e.preventDefault();
 
             var _token = $("input[name='_token']").val();
+            var EmployeeID = $("#EmployeeID").val();
             var name = $("#name").val();
             var designation = $("#designation").val();
             var department = $("#department").val();
             var email = $("#email").val();
             var mobile = $("#mobile").val();
             var roles = $("#roles").val();
+            console.log(name)
 
             $.ajax({
-                url: "{{ route('admin.employee.store') }}",
-                type:'POST',
-                data: {_token:_token, name:name, designation:designation, department:department,
+                url: '/admin/employee/'+EmployeeID,
+                type:'PUT',
+                data: {_token:_token, name:name, designation:designation, department:department, EmployeeID:EmployeeID,
                         email:email, mobile:mobile, roles:roles},
                 success:function(response) {
-                    $("#createForm")[0].reset();
+                    // $("#createForm")[0].reset();
                     Toast.fire({
                         icon: 'success',
-                        title: 'User created successfully'
+                        title: 'Employee updated successfully'
                         })
                 },
                 error:function (response) {
