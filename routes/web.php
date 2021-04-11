@@ -28,7 +28,8 @@ Route::prefix('admin')->group(function () {
         Route::get('/create', [EmployeeController::class, 'create'])->name('admin.employee.create');
         Route::post('/', [EmployeeController::class, 'store'])->name('admin.employee.store');
         Route::delete('/{id}', [EmployeeController::class, 'destroy'])->name('admin.employee.destroy');
-        Route::get('/{id}', [EmployeeController::class, 'edit'])->name('admin.employee.edit');
+        Route::get('/{id}/edit', [EmployeeController::class, 'edit'])->name('admin.employee.edit');
         Route::put('/{id}', [EmployeeController::class, 'update'])->name('admin.employee.update');
+        Route::get('/{id}', [EmployeeController::class, 'show'])->name('admin.employee.show');
     });
 });

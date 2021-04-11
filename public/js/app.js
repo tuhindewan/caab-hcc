@@ -1868,7 +1868,7 @@ var Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().mixin({
   toast: true,
   position: 'top-end',
   showConfirmButton: false,
-  timer: 2000,
+  timer: 5000,
   timerProgressBar: true,
   didOpen: function didOpen(toast) {
     toast.addEventListener('mouseenter', (sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().stopTimer));

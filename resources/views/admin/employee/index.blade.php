@@ -50,11 +50,13 @@
                             @endforeach
                         </td>
                         <td>
-                            <a type="button" title="Details">
+                            <a type="button" title="Details"
+                                href="{{ route('admin.employee.show', $employee->id) }}">
                                 <i class="fas fa-eye text-cyan"></i>
                             </a>
                             /
-                            <a type="button" title="Edit" href="{{ route('admin.employee.edit', $employee->id) }}">
+                            <a type="button" title="Edit"
+                                href="{{ route('admin.employee.edit', $employee->id) }}">
                                 <i class="fas fa-edit text-blue"></i>
                             </a>
                             /
