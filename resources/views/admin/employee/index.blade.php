@@ -61,9 +61,21 @@
                             </a>
                             /
                             <a type="button" href="javascript:void(0)"
-                                onclick="deleteEmployee({{ $employee->id }})"    title="Delete">
+                                onclick="deleteEmployee({{ $employee->id }})" title="Delete">
                                 <i class="fas fa-trash text-red"></i>
                             </a>
+                            /
+                            @if ($employee->status == 1)
+                            <a type="button" href=""
+                                title="Active">
+                                <i class="fas fa-lock text-green"></i>
+                            </a>
+                            @else
+                            <a type="button" href=""
+                                title="Inactive">
+                                <i class="fas fa-lock-open text-yellow"></i>
+                            </a>
+                            @endif
                         </td>
                     </tr>
                     @endforeach
@@ -139,4 +151,5 @@
         })
     }
 </script>
+
 @endpush

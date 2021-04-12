@@ -172,7 +172,6 @@ $(function () {
             var email = $("#email").val();
             var mobile = $("#mobile").val();
             var roles = $("#roles").val();
-            console.log(name)
 
             $.ajax({
                 url: '/admin/employee/'+EmployeeID,
