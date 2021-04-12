@@ -6,11 +6,14 @@ use App\Models\User;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Nexmo\Laravel\Facade\Nexmo;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\EmployeeStoreRequest;
 use App\Http\Requests\EmployeeUpdateRequest;
+use App\Mail\UserCreateMail;
 
 class EmployeeController extends Controller
 {
@@ -61,6 +64,18 @@ class EmployeeController extends Controller
                 ]);
                 $user->assignRole($request->input('roles'));
             }
+
+            $mailData = [
+                'name' => $request->name,
+                'username' => $request->mobile,
+            ];
+
+            Mail::to($request->email)->send(new UserCreateMail($mailData));
+            // Nexmo::message()->send([
+            //     'to'   => '+88'.$request->mobile,
+            //     'from' => config('app.name', 'Laravel'),
+            //     'text' => "Dear {$request->name}, CAAB assigned you a role in HCC system. Your login credentials are Username: {$request->mobile} and Password: 123123. You can change your password."
+            // ]);
 
             return response()->json([
                 'success' => 'Employee is created successfully!'
