@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\EmployeeController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::prefix('admin')->group(function () {
+
     Route::get('/employees', [EmployeeController::class, 'index'])->name('admin.employees.index');
     Route::prefix('employee')->group(function () {
         Route::get('/create', [EmployeeController::class, 'create'])->name('admin.employee.create');
@@ -32,4 +34,6 @@ Route::prefix('admin')->group(function () {
         Route::put('/{id}', [EmployeeController::class, 'update'])->name('admin.employee.update');
         Route::get('/{id}', [EmployeeController::class, 'show'])->name('admin.employee.show');
     });
+
+    Route::get('/profile', [ProfileController::class, 'getProfileData'])->name('admin.profile.getProfileData');
 });

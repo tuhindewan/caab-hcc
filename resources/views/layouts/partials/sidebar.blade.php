@@ -13,7 +13,7 @@
         <img src="{{ asset('img/profile.png') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-        <a href="#" class="d-block">Super Admin</a>
+        <a href="#" class="d-block">{{ auth()->user()->name }}</a>
         </div>
     </div>
 
@@ -56,7 +56,7 @@
                 </ul>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{{ route('admin.profile.getProfileData') }}" class="nav-link">
                     <i class="nav-icon fas fa-user text-yellow"></i>
                     <p>Profile</p>
                 </a>
