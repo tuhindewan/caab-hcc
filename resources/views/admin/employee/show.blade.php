@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', ' - '.'Employee Details')
+@section('title', ' | '.'Employee Details')
 
 @section('content')
 <section class="content">

@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', ' - '.'Employee List')
+@section('title', ' | '.'Employee List')
 
 @push('page-css')
 <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
