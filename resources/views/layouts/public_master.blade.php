@@ -12,5 +12,6 @@
 @yield('content')
 
 <script src="{{ 'js/app.js' }}"></script>
+@stack('page-js')
 </body>
 </html>
