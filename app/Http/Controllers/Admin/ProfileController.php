@@ -43,9 +43,10 @@ class ProfileController extends Controller
                 'mobile' => $request->mobile
             ]);
 
-            return response()->json([
-                'msg' => 'Profile information updated successfully'
-            ]);
         });
+
+        return response()->json([
+            'msg' => 'Profile information updated successfully'
+        ]);
     }
 }

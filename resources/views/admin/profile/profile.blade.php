@@ -96,11 +96,11 @@
                   <div class="col-md-3">
                       <div class="row">
                           <div class="col-md-6">
-                              <img src="{{ asset('img/150.png') }}" alt="">
+                              <img id="signaturePreview" src="{{ asset('img/150.png') }}" alt="" height="150px" width="150px">
                           </div>
                           <div class="col-md-6">
                             <div class="col-md-6">
-                                <img src="{{ asset('img/150.png') }}" alt="">
+                                <img id="sealPreview" src="{{ asset('img/150.png') }}" alt="" height="150px" width="150px">
                             </div>
                           </div>
                       </div>
@@ -117,6 +117,39 @@
 @push('page-js')
 <script type="text/javascript">
     $(document).ready(function() {
+
+        $('#signature').change(function(){
+            let reader = new FileReader()
+
+            if (this.files[0].size < 209715) {
+                reader.onload = (e) => {
+                    $('#signaturePreview').attr('src', e.target.result)
+                }
+                reader.readAsDataURL(this.files[0])
+            }else{
+                Toast.fire({
+                        icon: 'error',
+                        title: 'More than 2MB file is not supported'
+                    })
+            }
+        })
+
+        $('#seal').change(function(){
+            let reader = new FileReader()
+
+            if (this.files[0].size < 209715) {
+                reader.onload = (e) => {
+                    $('#sealPreview').attr('src', e.target.result)
+                }
+                reader.readAsDataURL(this.files[0])
+            }else{
+                Toast.fire({
+                        icon: 'error',
+                        title: 'More than 2MB file is not supported'
+                    })
+            }
+        })
+
         $(".btn-submit").click(function(e){
             e.preventDefault();
 
@@ -129,6 +162,8 @@
             var signature = $("#signature").val();
             var seal = $("#seal").val();
             var password = $("#password").val();
+            console.log(signature)
+            console.log(seal)
 
             $.ajax({
                 url: '/admin/profile/',
