@@ -10,6 +10,6 @@ class ProfileController extends Controller
 {
     public function getProfileData()
     {
-        $user = auth()->user();
+        return view('admin.profile.profile');
     }
 }
