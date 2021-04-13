@@ -14,37 +14,42 @@
             <div class="card-body">
               <div class="row">
                   <div class="col-md-9">
-                    <form class="form-horizontal">
+                    <form class="profileUpdateForm">
+                        @csrf
                         <div class="form-group row">
                           <label for="name" class="col-sm-2 col-form-label">Name</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control"
+                                <input type="text" class="form-control"
                                     id="name" placeholder="Name"
                                     value="{{ old('name', auth()->user()->name) }}">
+                                <span class="text-danger" id="nameError"></span>
                           </div>
                         </div>
                         <div class="form-group row">
                             <label for="designation" class="col-sm-2 col-form-label">Designation</label>
                             <div class="col-sm-10">
-                              <input type="text" class="form-control"
+                                <input type="text" class="form-control"
                                       id="designation" placeholder="Designation"
                                       value="{{ old('designation', auth()->user()->employee->designation) }}">
+                                <span class="text-danger" id="designationError"></span>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="department" class="col-sm-2 col-form-label">Department</label>
                             <div class="col-sm-10">
-                              <input type="text" class="form-control"
+                                <input type="text" class="form-control"
                                       id="department" placeholder="Department"
                                       value="{{ old('department', auth()->user()->employee->department) }}">
+                                <span class="text-danger" id="departmentError"></span>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="email" class="col-sm-2 col-form-label">Email</label>
                             <div class="col-sm-10">
                                 <input type="email" class="form-control"
-                                        id="email" placeholder="Mobile"
+                                        id="email" placeholder="Email"
                                         value="{{ old('department', auth()->user()->email) }}">
+                                <span class="text-danger" id="emailError"></span>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -53,6 +58,7 @@
                             <input type="text" class="form-control"
                                     id="mobile" placeholder="Mobile"
                                     value="{{ old('mobile', auth()->user()->employee->mobile) }}">
+                            <span class="text-danger" id="mobileError"></span>
                           </div>
                         </div>
                         <div class="form-group row">
@@ -60,6 +66,7 @@
                           <div class="col-sm-10">
                             <input type="file" name="signature"
                                     id="signature">
+                            <span class="text-danger" id="signatureError"></span>
                           </div>
                         </div>
                         <div class="form-group row">
@@ -67,6 +74,7 @@
                           <div class="col-sm-10">
                             <input type="file" name="signature"
                                     id="seal">
+                            <span class="text-danger" id="sealError"></span>
                           </div>
                         </div>
                         <div class="form-group row">
@@ -74,12 +82,13 @@
                           <div class="col-sm-10">
                             <input type="password" class="form-control"
                                     id="password" placeholder="Password">
+                            <span class="text-danger" id="passwordError"></span>
                           </div>
                         </div>
 
                         <div class="form-group row">
                           <div class="offset-sm-2 col-sm-10">
-                            <button type="submit" class="btn btn-danger btn-sm"><b>Update</b> <i class="fas fa-edit"></i></button>
+                            <button type="submit" class="btn btn-danger btn-sm btn-submit"><b>Update</b> <i class="fas fa-edit"></i></button>
                           </div>
                         </div>
                       </form>
@@ -104,3 +113,46 @@
     </div>
   </section>
 @endsection
+
+@push('page-js')
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".btn-submit").click(function(e){
+            e.preventDefault();
+
+            var _token = $("input[name='_token']").val();
+            var name = $("#name").val();
+            var designation = $("#designation").val();
+            var department = $("#department").val();
+            var email = $("#email").val();
+            var mobile = $("#mobile").val();
+            var signature = $("#signature").val();
+            var seal = $("#seal").val();
+            var password = $("#password").val();
+
+            $.ajax({
+                url: '/admin/profile/',
+                type:'PUT',
+                data: {_token:_token, name:name, designation:designation, department:department,
+                        email:email, mobile:mobile, signature:signature, seal:seal, password:password},
+                success:function(response) {
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'Profile information updated successfully'
+                        })
+                },
+                error:function (response) {
+                    $('#nameError').text(response.responseJSON.errors.name);
+                    $('#designationError').text(response.responseJSON.errors.designation);
+                    $('#departmentError').text(response.responseJSON.errors.department);
+                    $('#emailError').text(response.responseJSON.errors.email);
+                    $('#mobileError').text(response.responseJSON.errors.mobile);
+                    $('#signatureError').text(response.responseJSON.errors.signature);
+                    $('#sealError').text(response.responseJSON.errors.seal);
+                    $('#passwordError').text(response.responseJSON.errors.password);
+                }
+            });
+        });
+    });
+</script>
+@endpush

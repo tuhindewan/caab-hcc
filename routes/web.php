@@ -36,4 +36,5 @@ Route::prefix('admin')->group(function () {
     });
 
     Route::get('/profile', [ProfileController::class, 'getProfileData'])->name('admin.profile.getProfileData');
+    Route::put('/profile', [ProfileController::class, 'profileUpdate'])->name('admin.profile.update');
 });
