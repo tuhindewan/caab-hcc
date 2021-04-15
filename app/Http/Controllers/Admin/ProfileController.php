@@ -24,7 +24,9 @@ class ProfileController extends Controller
         if($request->signature){
             $signatureExtension = explode('/', mime_content_type($request->signature))[1];
             $name = time().'.'.$signatureExtension;
-            $resize = Image::make($request->signature)->resize(150, 150);
+            $resize = Image::make($request->signature)->resize(600, null, function ($constraint) {
+                $constraint->aspectRatio();
+              })->encode('jpg');
             $save = Storage::put("public/images/signatures/{$name}", $resize->__toString());
             if($save){
                 DB::table('employees')->where('id', $employee->id)->update([
@@ -36,7 +38,9 @@ class ProfileController extends Controller
         if($request->seal){
             $sealExtension = explode('/', mime_content_type($request->seal))[1];
             $name = time().'.'.$sealExtension;
-            $resize = Image::make($request->seal)->resize(150, 150);
+            $resize = Image::make($request->seal)->resize(600, null, function ($constraint) {
+                $constraint->aspectRatio();
+              })->encode('jpg');
             $save = Storage::put("public/images/seals/{$name}", $resize->__toString());
             if($save){
                 DB::table('employees')->where('id', $employee->id)->update([

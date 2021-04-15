@@ -96,11 +96,19 @@
                   <div class="col-md-3">
                       <div class="row">
                           <div class="col-md-6">
+                              @if (auth()->user()->employee->signature)
+                              <img id="signaturePreview" src="{{ url('storage/images/signatures/'.auth()->user()->employee->signature) }}" alt="" height="150px" width="150px">
+                              @else
                               <img id="signaturePreview" src="{{ asset('img/150.png') }}" alt="" height="150px" width="150px">
+                              @endif
                           </div>
                           <div class="col-md-6">
                             <div class="col-md-6">
+                                @if (auth()->user()->employee->seal)
+                                <img id="sealPreview" src="{{ url('storage/images/seals/'.auth()->user()->employee->seal) }}" alt="" height="150px" width="150px">
+                                 @else
                                 <img id="sealPreview" src="{{ asset('img/150.png') }}" alt="" height="150px" width="150px">
+                                @endif
                             </div>
                           </div>
                       </div>
