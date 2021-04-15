@@ -53,15 +53,21 @@
                   <div class="row">
                       <div class="col-md-6">
                           @if ($employee->signature)
-                          <img class="img-fluid" src="{{ asset('img/photo1.png') }}" alt="Photo">
-                          @endif
+                          <img class="img-fluid"
+                                src="{{ url('storage/images/signatures/'.$employee->signature) }}"
+                                alt="Photo" width="200px" height="200px">
+                          @else
                           <p style="text-align: center">No Signature file uploaded yet</p>
+                          @endif
                       </div>
                       <div class="col-md-6">
                         @if ($employee->seal)
-                        <img class="img-fluid" src="{{ asset('img/photo1.png') }}" alt="Photo">
-                        @endif
+                        <img class="img-fluid"
+                             src="{{ url('storage/images/seals/'.$employee->seal) }}"
+                             alt="Photo" width="200px" height="200px">
+                        @else
                         <p style="text-align: center">No seal file uploaded yet</p>
+                        @endif
                       </div>
                   </div>
                 </div>
