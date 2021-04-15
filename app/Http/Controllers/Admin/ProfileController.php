@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ProfileUpdateRequest;
+use Illuminate\Contracts\Cache\Store;
 
 class ProfileController extends Controller
 {
@@ -28,11 +29,16 @@ class ProfileController extends Controller
                 $constraint->aspectRatio();
               })->encode('jpg');
             $save = Storage::put("public/images/signatures/{$name}", $resize->__toString());
+
+            $currentSignnature = "public/images/signatures/".$employee->signature;
+            Storage::delete($currentSignnature);
+
             if($save){
                 DB::table('employees')->where('id', $employee->id)->update([
                     'signature' => $name,
                 ]);
             }
+
         }
 
         if($request->seal){
@@ -42,6 +48,10 @@ class ProfileController extends Controller
                 $constraint->aspectRatio();
               })->encode('jpg');
             $save = Storage::put("public/images/seals/{$name}", $resize->__toString());
+
+            $currentSeal = "public/images/seals/".$employee->seal;
+            Storage::delete($currentSeal);
+
             if($save){
                 DB::table('employees')->where('id', $employee->id)->update([
                     'seal' => $name,
