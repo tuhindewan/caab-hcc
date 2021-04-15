@@ -162,4 +162,30 @@ class EmployeeController extends Controller
             'success' => 'Employee is deleted!'
         ]);
     }
+
+    public function inactiveEmployee($id)
+    {
+        $employee = Employee::findOrFail($id);
+
+        DB::table('employees')->where('id', $employee->id)->update([
+            'status' => '0'
+        ]);
+
+        return response()->json([
+            'success' => 'Emoplyee successfully inactivated!'
+        ]);
+    }
+
+    public function activeEmployee($id)
+    {
+        $employee = Employee::findOrFail($id);
+
+        DB::table('employees')->where('id', $employee->id)->update([
+            'status' => '1'
+        ]);
+
+        return response()->json([
+            'success' => 'Emoplyee successfully activated!'
+        ]);
+    }
 }

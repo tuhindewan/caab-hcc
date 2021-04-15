@@ -66,12 +66,14 @@
                             </a>
                             /
                             @if ($employee->status == 1)
-                            <a type="button" href=""
+                            <a type="button" href="javascript:void(0)"
+                                onclick="inactiveEmployee({{ $employee->id }})"
                                 title="Active">
                                 <i class="fas fa-lock text-green"></i>
                             </a>
                             @else
-                            <a type="button" href=""
+                            <a type="button" href="javascript:void(0)"
+                            onclick="activeEmployee({{ $employee->id }})"
                                 title="Inactive">
                                 <i class="fas fa-lock-open text-yellow"></i>
                             </a>
@@ -144,6 +146,68 @@
                             Toast.fire({
                                 icon: 'success',
                                 title: 'Employee deleted successfully'
+                                })
+                        },
+                    })
+                }
+        })
+    }
+</script>
+
+<script>
+    function inactiveEmployee(EmployeeID) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Employee cann't be able to access",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, inactive it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: '/admin/inactive/'+EmployeeID,
+                        type:'PUT',
+                        data: {
+                            _token: $("input[name='_token']").val()
+                        },
+                        success:function(response) {
+                            window.location.reload()
+                            Toast.fire({
+                                icon: 'success',
+                                title: 'Employee successfully inactivated'
+                                })
+                        },
+                    })
+                }
+        })
+    }
+</script>
+
+<script>
+    function activeEmployee(EmployeeID) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Employee can be able to access",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, active it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: '/admin/active/'+EmployeeID,
+                        type:'PUT',
+                        data: {
+                            _token: $("input[name='_token']").val()
+                        },
+                        success:function(response) {
+                            window.location.reload()
+                            Toast.fire({
+                                icon: 'success',
+                                title: 'Employee successfully activated'
                                 })
                         },
                     })

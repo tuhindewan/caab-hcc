@@ -35,6 +35,9 @@ Route::prefix('admin')->group(function () {
         Route::get('/{id}', [EmployeeController::class, 'show'])->name('admin.employee.show');
     });
 
+    Route::put('/inactive/{id}', [EmployeeController::class, 'inactiveEmployee']);
+    Route::put('/active/{id}', [EmployeeController::class, 'activeEmployee']);
+
     Route::get('/profile', [ProfileController::class, 'getProfileData'])->name('admin.profile.getProfileData');
     Route::put('/profile', [ProfileController::class, 'profileUpdate'])->name('admin.profile.update');
 });
