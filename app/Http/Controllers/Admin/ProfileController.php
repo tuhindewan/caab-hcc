@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ProfileUpdateRequest;
 
 class ProfileController extends Controller
@@ -18,6 +20,30 @@ class ProfileController extends Controller
     {
         $user = auth()->user();
         $employee = $user->employee;
+
+        if($request->signature){
+            $signatureExtension = explode('/', mime_content_type($request->signature))[1];
+            $name = time().'.'.$signatureExtension;
+            $resize = Image::make($request->signature)->resize(150, 150);
+            $save = Storage::put("public/images/signatures/{$name}", $resize->__toString());
+            if($save){
+                DB::table('employees')->where('id', $employee->id)->update([
+                    'signature' => $name,
+                ]);
+            }
+        }
+
+        if($request->seal){
+            $sealExtension = explode('/', mime_content_type($request->seal))[1];
+            $name = time().'.'.$sealExtension;
+            $resize = Image::make($request->seal)->resize(150, 150);
+            $save = Storage::put("public/images/seals/{$name}", $resize->__toString());
+            if($save){
+                DB::table('employees')->where('id', $employee->id)->update([
+                    'seal' => $name,
+                ]);
+            }
+        }
 
         DB::transaction(function () use($request, $employee, $user) {
 

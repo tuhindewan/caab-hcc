@@ -117,13 +117,15 @@
 @push('page-js')
 <script type="text/javascript">
     $(document).ready(function() {
-
+        signatureBase64 = null
+        sealBase64 = null
         $('#signature').change(function(){
             let reader = new FileReader()
 
             if (this.files[0].size < 209715) {
                 reader.onload = (e) => {
                     $('#signaturePreview').attr('src', e.target.result)
+                    signatureBase64 = e.target.result
                 }
                 reader.readAsDataURL(this.files[0])
             }else{
@@ -140,6 +142,8 @@
             if (this.files[0].size < 209715) {
                 reader.onload = (e) => {
                     $('#sealPreview').attr('src', e.target.result)
+                    sealBase64 = e.target.result
+                    // console.log(data)
                 }
                 reader.readAsDataURL(this.files[0])
             }else{
@@ -159,11 +163,10 @@
             var department = $("#department").val();
             var email = $("#email").val();
             var mobile = $("#mobile").val();
-            var signature = $("#signature").val();
-            var seal = $("#seal").val();
+            var signature = signatureBase64;
+            var seal = sealBase64;
             var password = $("#password").val();
             console.log(signature)
-            console.log(seal)
 
             $.ajax({
                 url: '/admin/profile/',
