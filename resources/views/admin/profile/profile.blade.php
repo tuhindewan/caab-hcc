@@ -78,6 +78,15 @@
                           </div>
                         </div>
                         <div class="form-group row">
+                            <label for="username" class="col-sm-2 col-form-label">Username</label>
+                            <div class="col-sm-10">
+                              <input type="text" class="form-control"
+                                      id="username" placeholder="Username"
+                                      value="{{ old('username', auth()->user()->username) }}">
+                              <span class="text-danger" id="usernameError"></span>
+                            </div>
+                          </div>
+                        <div class="form-group row">
                           <label for="password" class="col-sm-2 col-form-label">Password</label>
                           <div class="col-sm-10">
                             <input type="password" class="form-control"
@@ -174,13 +183,13 @@
             var signature = signatureBase64;
             var seal = sealBase64;
             var password = $("#password").val();
-            console.log(signature)
+            var username = $("#username").val();
 
             $.ajax({
                 url: '/admin/profile/',
                 type:'PUT',
                 data: {_token:_token, name:name, designation:designation, department:department,
-                        email:email, mobile:mobile, signature:signature, seal:seal, password:password},
+                        email:email, mobile:mobile, signature:signature, seal:seal, password:password, username:username},
                 success:function(response) {
                     Toast.fire({
                         icon: 'success',
@@ -196,6 +205,7 @@
                     $('#signatureError').text(response.responseJSON.errors.signature);
                     $('#sealError').text(response.responseJSON.errors.seal);
                     $('#passwordError').text(response.responseJSON.errors.password);
+                    $('#usernameError').text(response.responseJSON.errors.username);
                 }
             });
         });

@@ -51,7 +51,7 @@ class EmployeeController extends Controller
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
-                'username' => $request->mobile,
+                'username' => 'caab@123',
                 'password' => Hash::make('123123')
             ]);
 
@@ -67,7 +67,7 @@ class EmployeeController extends Controller
 
             $mailData = [
                 'name' => $request->name,
-                'username' => $request->mobile,
+                'username' => 'caab@123',
             ];
 
             Mail::to($request->email)->send(new UserCreateMail($mailData));

@@ -70,10 +70,17 @@ class ProfileController extends Controller
                     ]);
             }
 
+            if (!empty($request->username)) {
+                DB::table('users')
+                    ->where('id', $user->id)
+                    ->update([
+                        'username' => $request->username,
+                    ]);
+            }
+
             DB::table('users')->where('id', $user->id)->update([
                 'name' => $request->name,
                 'email' => $request->email,
-                'username' => $request->mobile,
             ]);
 
 

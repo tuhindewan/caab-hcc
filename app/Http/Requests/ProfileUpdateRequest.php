@@ -31,7 +31,9 @@ class ProfileUpdateRequest extends FormRequest
             'department' => 'required|string|max:191',
             'email' => 'required|string|email|max:191|unique:users,email,'.$user->id,
             'mobile' => 'required|numeric|min:11|unique:employees,mobile,'.$employee->id,
-            'password' => $this->request->get('password') != null ?'sometimes|required|min:6': ''
+            'password' => $this->request->get('password') != null ?'sometimes|required|min:6': '',
+            // 'username' => $this->request->get('username') != null ?"sometimes|required|min:8|unique:users,username.$user->id": ''
+            'username' => 'sometimes|required|min:8|unique:users,username,'.$user->id,
         ];
     }
 
@@ -52,6 +54,7 @@ class ProfileUpdateRequest extends FormRequest
             'mobile.min' => 'Mobile number must be 11 digits',
             'mobile.unique' => 'Mobile number has already been taken',
             'password.required' => 'Employee password is required',
+            'username.required' => 'Employee username is required',
         ];
     }
 }
