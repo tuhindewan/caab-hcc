@@ -18,7 +18,8 @@ $fa-font-path: "../webfonts";
 @import "~@fortawesome/fontawesome-free/scss/brands.scss";
 @import "~@fortawesome/fontawesome-free/scss/regular.scss";
 
-.nav-item .active{
+
+.active_menu{
     background-color: #6574cd;
     color: white !important;
     font-weight: bold;

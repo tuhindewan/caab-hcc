@@ -69503,7 +69503,7 @@ readers do not read off random characters that represent icons */
   font-weight: 400;
 }
 
-.nav-item .active {
+.active_menu {
   background-color: #6574cd;
   color: white !important;
   font-weight: bold;
