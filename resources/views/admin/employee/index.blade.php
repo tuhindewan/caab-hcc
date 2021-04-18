@@ -46,7 +46,7 @@
                         <td>{{ $employee->mobile }}</td>
                         <td>
                             @foreach ($employee->user->roles as $role)
-                                {{ $role->name }}
+                            <span class="badge badge-info">{{ $role->name }}</span>
                             @endforeach
                         </td>
                         <td>

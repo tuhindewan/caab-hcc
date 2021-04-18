@@ -2,7 +2,8 @@
 
 @section('title', ' | '.'Employee Create')
 @push('page-css')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+<link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
+<link rel="stylesheet" href="{{ asset('css/select2-bootstrap4.min.css') }}">
 <style>
     .card-footer{
         border-top: none !important;
@@ -44,12 +45,19 @@
                         <span class="text-danger" id="emailError"></span>
                     </div>
                     <div class="form-group">
-                        <select class="selectpicker form-control" id="roles"
+                        {{-- <select class="selectpicker form-control" id="roles"
                             title="Select Role" data-live-search="true" multiple name="roles[]">
                             <option style="display: none"></option>
                             @foreach ($roles as $role)
                             <option value="{{ $role->id }}">{{ $role->name }}</option>
                             @endforeach
+                        </select> --}}
+                        <select class="select2bs4 form-control" multiple="multiple" id="roles"
+                                name="roles[]" data-placeholder="Select Permissions"
+                                title="Select Role" style="width: 100%;">
+                        @foreach ($roles as $role)
+                            <option value="{{ $role->id }}">{{ $role->name }}</option>
+                        @endforeach
                         </select>
                         <span class="text-danger" id="rolesError"></span>
                     </div>
@@ -76,7 +84,16 @@
 @push('page-js')
 <script src="{{ asset('plugins/jquery-validation/jquery.validate.min.js') }}"></script>
 <script src="{{ asset('plugins/jquery-validation/additional-methods.min.js') }}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+<script src="{{ asset('js/select2.full.min.js') }}"></script>
+<script>
+    //Initialize Select2 Elements
+    $('.select2').select2()
+
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+      theme: 'bootstrap4'
+    })
+</script>
 <script>
 $(function () {
   $('#createForm').validate({
