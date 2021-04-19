@@ -16,10 +16,11 @@ class RolePermissionSeeder extends Seeder
     public function run()
     {
         $roleSuperAdmin = Role::create(['name' => 'Super Admin']);
+        $roleUser = Role::create(['name' => 'User']);
         $roleAdmin = Role::create(['name' => 'Admin']);
         $roleEditor = Role::create(['name' => 'Editor']);
         $roleOfficer = Role::create(['name' => 'Officer']);
-        $roleUser = Role::create(['name' => 'User']);
+
 
         DB::table('model_has_roles')->insert([
             'role_id' => 1,
