@@ -24,8 +24,8 @@
                 <div class="card-body">
                   <p class="login-box-msg"></p>
 
-                  <form id="registerForm" action="" method="post">
-
+                  <form id="registerForm" action="{{ route('register') }}" method="post">
+                        @csrf
                         <div class="input-group mb-3 form-group">
                             <input type="text" name="name" id="name"
                                     class="form-control" placeholder="Full name">
@@ -127,7 +127,7 @@
         rules: {
             name: {
                 required: true,
-                maxlength: true
+                maxlength: 191
             },
             nid: {
                 required: true,

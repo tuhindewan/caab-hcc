@@ -50,9 +50,18 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'name' => ['required', 'string', 'max:191'],
+            'nid' => ['required', 'min:10', 'max:10', 'unique:applicants,nid'],
+            'email' => ['required', 'string', 'email', 'max:191', 'unique:users'],
+            'mobile' => 'required|numeric|min:11|unique:applicants',
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
+        ],
+        [
+            'nid.unique' => 'This NID has already been registered',
+            'email.unique' => 'The email address has already been taken',
+            'mobile.numeric' => 'Mobile number must be a number',
+            'mobile.min' => 'Mobile number must be 11 digits',
+            'mobile.unique' => 'Mobile number has already been taken',
         ]);
     }
 
