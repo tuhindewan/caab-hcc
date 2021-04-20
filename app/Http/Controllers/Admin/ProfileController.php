@@ -12,6 +12,12 @@ use Illuminate\Contracts\Cache\Store;
 
 class ProfileController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    
     public function getProfileData()
     {
         return view('admin.profile.profile');

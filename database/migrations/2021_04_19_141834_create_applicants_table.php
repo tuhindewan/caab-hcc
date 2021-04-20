@@ -17,7 +17,7 @@ class CreateApplicantsTable extends Migration
             $table->id();
             $table->string('nid');
             $table->string('mobile');
-            $table->boolean('status')->default(1);
+            $table->boolean('status')->default(0);
             $table->foreignId('user_id')->constrained()
                     ->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();

@@ -24,44 +24,66 @@
                 <div class="card-body">
                   <p class="login-box-msg"></p>
 
-                  <form id="registerForm" action="{{ route('register') }}" method="post">
+                  <form id="registerForm" action="{{ route('register') }}" method="POST">
                         @csrf
                         <div class="input-group mb-3 form-group">
                             <input type="text" name="name" id="name"
-                                    class="form-control" placeholder="Full name">
+                                    class="form-control @error('username') is-invalid @enderror" placeholder="Full name"
+                                    value="{{ old('name') }}">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-user"></span>
                                 </div>
                             </div>
+                            @error('username')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
+                        <span class="text-danger" id="nameError"></span>
 
                         <div class="input-group mb-3 form-group">
-                            <input type="text" name="nid" id="nid"
-                                    class="form-control" placeholder="National ID">
+                            <input type="text" name="nid" id="nid" value="{{ old('nid') }}"
+                                    class="form-control @error('nid') is-invalid @enderror" placeholder="National ID">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-id-card"></span>
                                 </div>
                             </div>
+                            @error('nid')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="input-group mb-3 form-group">
-                            <input type="email" name="email" id="email"
-                                    class="form-control" placeholder="Email">
+                            <input type="email" name="email" value="{{ old('email') }}" id="email"
+                                    class="form-control @error('email') is-invalid @enderror" placeholder="Email">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-envelope"></span>
                                 </div>
                             </div>
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="input-group mb-3 form-group">
-                            <input type="text" name="mobile" id="mobile"
-                                    class="form-control" placeholder="Mobile">
+                            <input type="text" name="mobile" value="{{ old('mobile') }}" id="mobile"
+                                    class="form-control @error('mobile') is-invalid @enderror" placeholder="Mobile">
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-phone"></span>
                                 </div>
                             </div>
+                            @error('mobile')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="form-group input-group">
                             <input id="password" type="password"
@@ -103,7 +125,7 @@
                                 </div>
                             </div>
                             <div class="col-4">
-                                <button type="submit" class="btn btn-primary btn-block">Register</button>
+                                <button type="submit" class="btn btn-primary btn-block btn-submit">Register</button>
                             </div>
                         </div>
                   </form>
