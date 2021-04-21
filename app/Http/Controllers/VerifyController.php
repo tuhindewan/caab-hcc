@@ -20,7 +20,7 @@ class VerifyController extends Controller
             return redirect()->route('login')->withMessage('Your account is active');
         }
         else{
-            return back()->withMessage('verify code is not correct. Please try again');
+            return back()->withMessage('Verification code is not correct. Please try again');
         }
     }
 

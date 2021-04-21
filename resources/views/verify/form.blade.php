@@ -19,9 +19,12 @@
           <div class="col-md-4">
             <div class="card card-outline">
                 <div class="card-header text-center">
-                  <p><b>Sign in to start your session</b></p>
+                  <p><b>Enter your account verification code here</b></p>
                 </div>
                 <div class="card-body">
+                    @if(Session::has('message'))
+                    <div class="alert alert-danger">{{Session::get('message')}}</div>
+                    @endif
                   <form id="loginForm" method="POST" action="{{ route('verify') }}">
                       @csrf
                       <div class="form-group input-group">
@@ -30,7 +33,7 @@
                               name="code" value="{{ old('code') }}" placeholder="Enter code">
                           <div class="input-group-append">
                               <div class="input-group-text">
-                                  <span class="fas fa-envelope"></span>
+                                  <span class="fas fa-lock"></span>
                               </div>
                           </div>
                           @error('code')
@@ -41,7 +44,7 @@
                       </div>
                       <div class="row">
                           <div class="col-4">
-                              <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                              <button type="submit" class="btn btn-primary btn-block">Verify</button>
                           </div>
                       </div>
                   </form>
@@ -68,7 +71,7 @@
         },
         messages: {
             code: {
-                required: "Employee code is required",
+                required: "Verification code is required",
             }
         },
         errorElement: 'span',
