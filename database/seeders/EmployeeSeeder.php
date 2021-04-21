@@ -19,7 +19,7 @@ class EmployeeSeeder extends Seeder
             'designation' => 'Super Admin',
             'department' => 'Civil Aviation Authority of Bangladesh',
             'mobile' => '***********',
-            'user_id' => '1'
+            'user_id' => 1,
         ]);
     }
 }

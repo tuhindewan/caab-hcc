@@ -65,15 +65,15 @@
                                 <i class="fas fa-trash text-red"></i>
                             </a>
                             /
-                            @if ($employee->status == 1)
+                            @if ($employee->user->status == 1)
                             <a type="button" href="javascript:void(0)"
-                                onclick="inactiveEmployee({{ $employee->id }})"
+                                onclick="inactiveEmployee({{ $employee->user->id }})"
                                 title="Active">
                                 <i class="fas fa-lock text-green"></i>
                             </a>
                             @else
                             <a type="button" href="javascript:void(0)"
-                            onclick="activeEmployee({{ $employee->id }})"
+                            onclick="activeEmployee({{ $employee->user->id }})"
                                 title="Inactive">
                                 <i class="fas fa-lock-open text-yellow"></i>
                             </a>
@@ -158,7 +158,7 @@
     function inactiveEmployee(EmployeeID) {
         Swal.fire({
             title: 'Are you sure?',
-            text: "Employee cann't be able to access",
+            text: "Employee can't be able to access",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',

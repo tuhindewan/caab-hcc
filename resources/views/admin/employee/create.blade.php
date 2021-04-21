@@ -14,9 +14,7 @@
 <section class="content">
     <div class="container-fluid">
       <div class="row">
-        <!-- left column -->
         <div class="col-md-12">
-          <!-- jquery validation -->
           <div class="card">
             <div class="card-header">
               <h3 class="card-title">Employee Create</h3>
@@ -25,33 +23,26 @@
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
-                        <input type="text" name="name" id="name"
+                        <input type="text" name="name" id="name" value="{{ old('name') }}"
                           class="form-control"placeholder="Enter name">
                           <span class="text-danger" id="nameError"></span>
                     </div>
                     <div class="form-group">
-                      <input type="text" name="designation" id="designation"
+                      <input type="text" name="designation" id="designation" value="{{ old('designation') }}"
                         class="form-control" placeholder="Enter Designation">
                         <span class="text-danger" id="designationError"></span>
                     </div>
                     <div class="form-group">
-                      <input type="text" name="department" id="department"
+                      <input type="text" name="department" id="department" value="{{ old('department') }}"
                         class="form-control" placeholder="Enter Department">
                         <span class="text-danger" id="departmentError"></span>
                     </div>
                     <div class="form-group">
-                      <input type="email" name="email" id="email"
+                      <input type="email" name="email" id="email" value="{{ old('email') }}"
                         class="form-control" placeholder="Enter email">
                         <span class="text-danger" id="emailError"></span>
                     </div>
                     <div class="form-group">
-                        {{-- <select class="selectpicker form-control" id="roles"
-                            title="Select Role" data-live-search="true" multiple name="roles[]">
-                            <option style="display: none"></option>
-                            @foreach ($roles as $role)
-                            <option value="{{ $role->id }}">{{ $role->name }}</option>
-                            @endforeach
-                        </select> --}}
                         <select class="select2bs4 form-control" multiple="multiple" id="roles"
                                 name="roles[]" data-placeholder="Select Permissions"
                                 title="Select Role" style="width: 100%;">
@@ -62,7 +53,7 @@
                         <span class="text-danger" id="rolesError"></span>
                     </div>
                     <div class="form-group">
-                        <input type="text" name="mobile" id="mobile"
+                        <input type="text" name="mobile" id="mobile" value="{{ old('mobile') }}"
                           class="form-control" placeholder="Enter mobile number">
                           <span class="text-danger" id="mobileError"></span>
                     </div>
@@ -94,7 +85,7 @@
       theme: 'bootstrap4'
     })
 </script>
-<script>
+{{-- <script>
 $(function () {
   $('#createForm').validate({
     rules: {
@@ -162,7 +153,7 @@ $(function () {
     }
   });
 });
-</script>
+</script> --}}
 
 <script type="text/javascript">
     $(document).ready(function() {

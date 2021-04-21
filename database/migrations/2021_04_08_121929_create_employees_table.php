@@ -20,7 +20,6 @@ class CreateEmployeesTable extends Migration
             $table->string('mobile');
             $table->string('signature')->nullable();
             $table->string('seal')->nullable();
-            $table->boolean('status')->default(1);
             $table->foreignId('user_id')->constrained()
                     ->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();

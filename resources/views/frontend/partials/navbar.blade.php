@@ -58,6 +58,15 @@
         </form>
         </div>
 
+        @auth
+        <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link" href="{{ url('/home') }}">
+                Home
+                </a>
+            </li>
+        </ul>
+        @else
         <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
             <li class="nav-item dropdown">
                 <a class="nav-link" href="{{ route('login') }}">
@@ -70,6 +79,7 @@
                 </a>
             </li>
         </ul>
+        @endauth
     </div>
 </nav>
 

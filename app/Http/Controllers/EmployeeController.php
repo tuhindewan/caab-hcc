@@ -53,11 +53,13 @@ class EmployeeController extends Controller
     public function store(EmployeeStoreRequest $request)
     {
         DB::transaction(function () use($request) {
+            // dd($request->all());
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'username' => 'caab@123',
-                'password' => Hash::make('123123')
+                'password' => Hash::make('123123'),
+                'status' => 1,
             ]);
 
             if($user){
@@ -170,10 +172,10 @@ class EmployeeController extends Controller
 
     public function inactiveEmployee($id)
     {
-        $employee = Employee::findOrFail($id);
+        $user = User::findOrFail($id);
 
-        DB::table('employees')->where('id', $employee->id)->update([
-            'status' => '0'
+        DB::table('users')->where('id', $user->id)->update([
+            'status' => 0
         ]);
 
         return response()->json([
@@ -183,10 +185,10 @@ class EmployeeController extends Controller
 
     public function activeEmployee($id)
     {
-        $employee = Employee::findOrFail($id);
+        $user = User::findOrFail($id);
 
-        DB::table('employees')->where('id', $employee->id)->update([
-            'status' => '1'
+        DB::table('users')->where('id', $user->id)->update([
+            'status' => 1
         ]);
 
         return response()->json([
