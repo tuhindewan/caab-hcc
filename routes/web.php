@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\VerifyController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +24,9 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/verify', [VerifyController::class, 'getVerify'])->name('getverify');
+Route::post('/verify',[VerifyController::class, 'postVerify'])->name('verify');
+
 Route::prefix('admin')->group(function () {
 
     Route::get('/employees', [EmployeeController::class, 'index'])->name('admin.employees.index');
@@ -41,3 +45,5 @@ Route::prefix('admin')->group(function () {
     Route::get('/profile', [ProfileController::class, 'getProfileData'])->name('admin.profile.getProfileData');
     Route::put('/profile', [ProfileController::class, 'profileUpdate'])->name('admin.profile.update');
 });
+
+

@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Models\Applicant;
-use App\Providers\RouteServiceProvider;
 use App\Models\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Classes\SendCode;
+use App\Models\Applicant;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Auth\Events\Registered;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
@@ -30,7 +33,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/verify';
 
     /**
      * Create a new controller instance.
@@ -66,6 +69,13 @@ class RegisterController extends Controller
         ]);
     }
 
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+        event(new Registered($user = $this->create($request->all())));
+        return $this->registered($request,$user) ?: redirect('/verify?mobile='.$request->mobile);
+    }
+
     /**
      * Create a new user instance after a valid registration.
      *
@@ -88,6 +98,11 @@ class RegisterController extends Controller
                 'user_id' => $user->id
             ]);
             $user->assignRole(['2']);
+        }
+
+        if($user){
+            $user->code = SendCode::sendCode($data['mobile']);
+            $user->save();
         }
 
         return $user;
