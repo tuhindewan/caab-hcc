@@ -22,9 +22,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
+        ->name('home');
 
-Route::get('/verify', [VerifyController::class, 'getVerify'])->name('getverify');
+Route::get('/registration-verification', [VerifyController::class, 'getVerify'])
+        ->name('getverify');
 Route::post('/verify',[VerifyController::class, 'postVerify'])->name('verify');
 
 Route::prefix('admin')->group(function () {

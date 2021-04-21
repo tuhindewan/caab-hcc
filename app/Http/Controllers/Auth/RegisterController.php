@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Classes\SendCode;
 use App\Models\Applicant;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
@@ -33,7 +34,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/verify';
+    protected $redirectTo = '/registration-verification';
 
     /**
      * Create a new controller instance.
@@ -69,12 +70,12 @@ class RegisterController extends Controller
         ]);
     }
 
-    public function register(Request $request)
-    {
-        $this->validator($request->all())->validate();
-        event(new Registered($user = $this->create($request->all())));
-        return $this->registered($request,$user) ?: redirect('/verify?mobile='.$request->mobile);
-    }
+    // public function register(Request $request)
+    // {
+    //     $this->validator($request->all())->validate();
+    //     event(new Registered($user = $this->create($request->all())));
+    //     return $this->registered($request,$user) ? : redirect('/registration-verification?mobile='.$request->mobile);
+    // }
 
     /**
      * Create a new user instance after a valid registration.
@@ -101,7 +102,7 @@ class RegisterController extends Controller
         }
 
         if($user){
-            $user->code = SendCode::sendCode($data['mobile']);
+            $user->code = SendCode::sendCode($data['mobile'], $data['name']);
             $user->save();
         }
 

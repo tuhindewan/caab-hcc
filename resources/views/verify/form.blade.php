@@ -1,5 +1,5 @@
 @extends('frontend.master')
-@section('title', ' | '.'Login')
+@section('title', ' | '.'Account Verification')
 
 @section('content')
 <div class="content-wrapper">

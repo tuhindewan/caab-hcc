@@ -22,12 +22,15 @@
                   <p><b>Sign in to start your session</b></p>
                 </div>
                 <div class="card-body">
+                    @if(Session::has('message'))
+                    <div class="alert alert-success">{{Session::get('message')}}</div>
+                    @endif
                   <form id="loginForm" method="POST" action="{{ route('login') }}">
                       @csrf
                       <div class="form-group input-group">
                           <input id="username" type="text"
                               class="form-control @error('username') is-invalid @enderror"
-                              name="username" value="{{ old('username') }}" placeholder="Enter Username">
+                              name="username" value="{{ old('username') }}" placeholder="Enter Username or Mobile Number">
                           <div class="input-group-append">
                               <div class="input-group-text">
                                   <span class="fas fa-envelope"></span>
