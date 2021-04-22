@@ -33,6 +33,13 @@ Route::post('/verify',[VerifyController::class, 'postVerify'])->name('verify');
 Route::get('/resend-verification-code/{id}', [ResendVerificationCodeController::class, 'resendVerificationCode'])
         ->name('resend.verification.code');
 
+Route::get('/account-activation', [ResendVerificationCodeController::class, 'getActivationForm'])
+        ->name('activation.form')->middleware('guest');
+
+Route::post('/account-activate', [ResendVerificationCodeController::class, 'activation'])
+        ->name('activation.submit');
+
+
 Route::prefix('admin')->group(function () {
 
     Route::get('/employees', [EmployeeController::class, 'index'])->name('admin.employees.index');

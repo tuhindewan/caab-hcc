@@ -24,7 +24,6 @@
                 <div class="card-body">
 
                     @include('layouts.partials.flash_messages')
-                    
                   <form id="loginForm" method="POST" action="{{ route('login') }}">
                       @csrf
                       <div class="form-group input-group">
