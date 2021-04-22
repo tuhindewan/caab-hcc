@@ -14,7 +14,7 @@ class ApplicantController extends Controller
 
     public function getAllUsers()
     {
-        $users = Applicant::all();
-        return view('admin.users.index');
+        $applicants = Applicant::all();
+        return view('admin.users.index', compact('applicants'));
     }
 }

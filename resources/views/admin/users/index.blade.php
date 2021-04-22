@@ -32,15 +32,15 @@
                 </tr>
                 </thead>
                 <tbody>
-                    {{-- @foreach ($employees as $employee) --}}
+                    @foreach ($applicants as $applicant)
                     <tr>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
+                        <td>{{ $applicant->user->name }}</td>
+                        <td>{{ $applicant->nid }}</td>
+                        <td>{{ $applicant->user->email }}</td>
+                        <td>{{ $applicant->mobile }}</td>
                         <td>-</td>
                     </tr>
-                    {{-- @endforeach --}}
+                    @endforeach
 
               </table>
             </div>
