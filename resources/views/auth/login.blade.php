@@ -22,9 +22,9 @@
                   <p><b>Sign in to start your session</b></p>
                 </div>
                 <div class="card-body">
-                    @if(Session::has('message'))
-                    <div class="alert alert-success">{{Session::get('message')}}</div>
-                    @endif
+
+                    @include('layouts.partials.flash_messages')
+                    
                   <form id="loginForm" method="POST" action="{{ route('login') }}">
                       @csrf
                       <div class="form-group input-group">
