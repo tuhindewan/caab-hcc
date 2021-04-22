@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Applicant;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class ApplicantController extends Controller
 {
     public function __construct()
     {

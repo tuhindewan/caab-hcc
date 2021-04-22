@@ -1,9 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\ApplicantController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ResendVerificationCodeController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\VerifyController;
 use Illuminate\Support\Facades\Route;
 
@@ -61,7 +61,7 @@ Route::prefix('admin')->group(function () {
     Route::put('/profile', [ProfileController::class, 'profileUpdate'])
             ->name('admin.profile.update');
 
-    Route::get('/users', [UserController::class, 'getAllUsers'])
+    Route::get('/users', [ApplicantController::class, 'getAllUsers'])
             ->name('admin.users.index');
 });
 
