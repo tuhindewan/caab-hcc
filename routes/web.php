@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\ResendVerificationCodeController;
 use App\Http\Controllers\VerifyController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
 Route::get('/registration-verification', [VerifyController::class, 'getVerify'])
         ->name('getverify');
 Route::post('/verify',[VerifyController::class, 'postVerify'])->name('verify');
+
+Route::get('/resend-verification-code/{id}', [ResendVerificationCodeController::class, 'resendVerificationCode'])
+        ->name('resend.verification.code');
 
 Route::prefix('admin')->group(function () {
 

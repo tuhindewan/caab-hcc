@@ -22,9 +22,7 @@
                   <p><b>Enter your account verification code here</b></p>
                 </div>
                 <div class="card-body">
-                    @if(Session::has('message'))
-                    <div class="alert alert-danger">{{Session::get('message')}}</div>
-                    @endif
+                    @include('layouts.partials.flash_messages')
                   <form id="loginForm" method="POST" action="{{ route('verify') }}">
                       @csrf
                       <div class="form-group input-group">
@@ -48,6 +46,9 @@
                           </div>
                       </div>
                   </form>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ route('resend.verification.code', app('request')->input('user')) }}">Resend code</a>
                 </div>
               </div>
           </div>

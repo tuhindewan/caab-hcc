@@ -17,10 +17,10 @@ class VerifyController extends Controller
             $user->status = 1;
             $user->code=null;
             $user->save();
-            return redirect()->route('login')->withMessage('Your account is activated. Now you can login to the system');
+            return redirect()->route('login')->with('success', 'Your account is activated. Now you can login to the system');
         }
         else{
-            return back()->withMessage('Verification code is not correct. Please try again');
+            return back()->with('error', 'Verification code is not correct. Please try again');
         }
     }
 
