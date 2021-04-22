@@ -32,7 +32,7 @@
                               name="username" value="{{ old('username') }}" placeholder="Enter Username or Mobile Number">
                           <div class="input-group-append">
                               <div class="input-group-text">
-                                  <span class="fas fa-envelope"></span>
+                                  <span class="fas fa-user"></span>
                               </div>
                           </div>
                           @error('username')
@@ -72,7 +72,7 @@
                   </form>
 
                   <p class="mb-1">
-                    <a href="forgot-password.html">I forgot my password</a>
+                    <a href="{{ route('password.request') }}">I forgot my password</a>
                   </p>
                 </div>
               </div>
@@ -101,11 +101,11 @@
         },
         messages: {
             username: {
-                required: "Employee username is required",
+                required: "Username or mobile number is required",
                 maxlength: "More than 191 characters is not acceptable"
             },
             password: {
-                required: "Employee password is required",
+                required: "Password is required",
                 minlength: "Password must be at least 6 characters"
             }
         },
