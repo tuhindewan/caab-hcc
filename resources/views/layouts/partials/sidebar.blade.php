@@ -36,6 +36,7 @@
             <li class="nav-item {{ Route::is('admin.employee.create') ||
                                     Route::is('admin.employees.index') ||
                                     Route::is('admin.employee.edit') ||
+                                    Route::is('admin.users.index') ||
                                     Route::is('admin.employee.show') ? 'menu-open' : '' }}">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-cogs text-green"></i>
@@ -50,8 +51,15 @@
                                             Route::is('admin.employee.edit') ||
                                             Route::is('admin.employee.show') ? 'active_menu' : '' }}">
                         <a href="{{ route('admin.employees.index') }}" class="nav-link">
-                            <i class="fas fa-users nav-icon"></i>
+                            <i class="fas fa-pen-nib nav-icon"></i>
                             <p>Employees</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item {{ Route::is('admin.users.index') ? 'active_menu' : '' }}">
+                        <a href="{{ route('admin.users.index') }}" class="nav-link">
+                            <i class="fas fa-users nav-icon"></i>
+                            <p>Users</p>
                         </a>
                     </li>
                 </ul>
