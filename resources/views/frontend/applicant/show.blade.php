@@ -5,11 +5,10 @@
 <section class="content">
     <div class="container-fluid">
       <div class="row">
-        <!-- /.col -->
         <div class="col-md-12">
           <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Profile</h3>
+                <h3 class="card-title">Account Information</h3>
             </div>
             <div class="card-body">
               <div class="row">
@@ -21,7 +20,7 @@
                           <div class="col-sm-10">
                                 <input type="text" class="form-control"
                                     id="name" placeholder="Name"
-                                    value="{{ old('name', auth()->user()->name) }}">
+                                    value="{{ old('name', $data->name) }}">
                                 <span class="text-danger" id="nameError"></span>
                           </div>
                         </div>
@@ -30,7 +29,7 @@
                             <div class="col-sm-10">
                                 <input type="email" class="form-control"
                                         id="email" placeholder="Email"
-                                        value="{{ old('department', auth()->user()->email) }}">
+                                        value="{{ old('department', $data->email) }}">
                                 <span class="text-danger" id="emailError"></span>
                             </div>
                         </div>
@@ -39,16 +38,25 @@
                           <div class="col-sm-10">
                             <input type="text" class="form-control"
                                     id="mobile" placeholder="Mobile"
-                                    value="{{ old('mobile', auth()->user()) }}">
+                                    value="{{ old('mobile', $data->applicant->mobile) }}">
                             <span class="text-danger" id="mobileError"></span>
                           </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="nid" class="col-sm-2 col-form-label">NID</label>
+                            <div class="col-sm-10">
+                              <input type="text" class="form-control"
+                                      id="nid" placeholder="NID"
+                                      value="{{ old('nid', $data->applicant->nid) }}">
+                              <span class="text-danger" id="mobileError"></span>
+                            </div>
+                          </div>
                         <div class="form-group row">
                             <label for="username" class="col-sm-2 col-form-label">Username</label>
                             <div class="col-sm-10">
                               <input type="text" class="form-control"
                                       id="username" placeholder="Username"
-                                      value="{{ old('username', auth()->user()->username) }}">
+                                      value="{{ old('username', $data->username) }}">
                               <span class="text-danger" id="usernameError"></span>
                             </div>
                           </div>
