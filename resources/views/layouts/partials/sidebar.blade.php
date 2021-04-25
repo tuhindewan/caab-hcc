@@ -70,6 +70,12 @@
                     <p>Profile</p>
                 </a>
             </li>
+            <li class="nav-item {{ Route::is('applicant.account') ? 'active_menu' : '' }}">
+                <a href="{{ route('applicant.account') }}" class="nav-link">
+                    <i class="nav-icon fas fa-user text-yellow"></i>
+                    <p>Account</p>
+                </a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('logout') }}"
                     onclick="event.preventDefault();

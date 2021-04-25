@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\ApplicantController;
 use App\Http\Controllers\EmployeeController;
@@ -63,6 +64,11 @@ Route::prefix('admin')->group(function () {
 
     Route::get('/users', [ApplicantController::class, 'getAllUsers'])
             ->name('admin.users.index');
+});
+
+Route::prefix('account')->group(function() {
+    Route::get('/', [AccountController::class, 'getIndividualApplicant'])
+        ->name('applicant.account');
 });
 
 
