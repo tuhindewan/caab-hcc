@@ -8,6 +8,6 @@ class AccountController extends Controller
 {
     public function getIndividualApplicant()
     {
-        return auth()->user()->applicant;
+        return view('frontend.applicant.show');
     }
 }
