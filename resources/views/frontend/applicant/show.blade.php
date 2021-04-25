@@ -169,7 +169,8 @@ $(function () {
   });
 });
 </script>
-{{-- <script type="text/javascript">
+
+<script type="text/javascript">
     $(document).ready(function() {
         $(".btn-submit").click(function(e){
             e.preventDefault();
@@ -181,7 +182,6 @@ $(function () {
             var mobile = $("#mobile").val();
             var username = $("#username").val();
             var password = $("#password").val();
-            console.log(password)
 
             $.ajax({
                 url: "{{ route('applicant.account.update') }}",
@@ -204,5 +204,5 @@ $(function () {
             });
         });
     });
-</script> --}}
+</script>
 @endpush

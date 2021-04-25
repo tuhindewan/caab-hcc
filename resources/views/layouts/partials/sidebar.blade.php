@@ -72,7 +72,7 @@
             </li>
             <li class="nav-item {{ Route::is('applicant.account') ? 'active_menu' : '' }}">
                 <a href="{{ route('applicant.account') }}" class="nav-link">
-                    <i class="nav-icon fas fa-user text-yellow"></i>
+                    <i class="nav-icon fas fa-cog text-cyan"></i>
                     <p>Account</p>
                 </a>
             </li>
