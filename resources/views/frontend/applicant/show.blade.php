@@ -190,7 +190,7 @@ $(function () {
                 success:function(response) {
                     Toast.fire({
                         icon: 'success',
-                        title: 'Employee created successfully'
+                        title: 'Account information updated successfully'
                         })
                 },
                 error:function (response) {
