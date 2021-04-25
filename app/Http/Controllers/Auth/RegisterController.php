@@ -107,7 +107,7 @@ class RegisterController extends Controller
                 'mobile' => $data['mobile'],
                 'user_id' => $user->id
             ]);
-            $user->assignRole(['2']);
+            $user->assignRole(['User']);
         }
 
         if($user){
