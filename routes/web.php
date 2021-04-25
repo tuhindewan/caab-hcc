@@ -69,6 +69,8 @@ Route::prefix('admin')->group(function () {
 Route::prefix('account')->group(function() {
     Route::get('/', [AccountController::class, 'getIndividualApplicant'])
         ->name('applicant.account');
+    Route::put('/', [AccountController::class, 'updateAccount'])
+        ->name('applicant.account.update');
 });
 
 

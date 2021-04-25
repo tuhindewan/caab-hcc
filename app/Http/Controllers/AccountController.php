@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\AccountUpdateRequest;
 
 class AccountController extends Controller
 {
@@ -10,5 +10,10 @@ class AccountController extends Controller
     {
         $data = auth()->user();
         return view('frontend.applicant.show', compact('data'));
+    }
+
+    public function updateAccount(AccountUpdateRequest $request)
+    {
+        return $request->all();
     }
 }
