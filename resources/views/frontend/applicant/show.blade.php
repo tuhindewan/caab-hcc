@@ -14,6 +14,7 @@
               <div class="row">
                   <div class="col-md-8">
                     <form id="updateForm">
+                        @csrf
                         <div class="card-body">
                             <div class="row">
                                 <label for="name" class="col-sm-2 col-form-label">Name</label>
